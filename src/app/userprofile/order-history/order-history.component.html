@@ -1,0 +1,121 @@
+<div class="container my-100">
+  <!-- <span style="float: right;"><mat-icon>more_vert</mat-icon></span> -->
+
+  <!-- <div class="mat-elevation-z8"> -->
+  <!-- table -->
+  <div class="container">
+    <div class="row content__center">
+      <div class="col-md-10">
+        <h3 class="mb-3">
+          Order History
+        </h3>
+        <div
+          style="background-color: #fff; padding: 8px;box-shadow: 0 8px 18px 0 rgba(91, 92, 105, 0.2);border: 1px solid #fff;">
+          <mat-card class="example-card" *ngFor="let history of historylist">
+            <div class="conatiner-fluid" style="border-bottom: 1.5px solid #a6a6a6;">
+              <div class="row">
+                <div class="col-sm-4 col-xs-12" style="margin-bottom: 8px;margin-top: 8px;">
+                  <img class="img-responsive" src="{{history.EventIcon}}" alt="" style="height:30px;" />
+                </div>
+                <div class="col-sm-8 col-xs-12 pt-10">
+                  <div class="row content__center" style="justify-content: space-between;">
+                    <div class="col-sm-6 col-6">
+                      <h6><strong class="content-align">Tickets :
+                          &nbsp;</strong><span>{{history.NoOfTickets}}</span></h6>
+                    </div>
+                    <div class="col-sm-2 col-2 content__end">
+                      <mat-icon [matMenuTriggerFor]="beforeMenu" class="mat-icon">more_horiz</mat-icon>
+                      <mat-menu #beforeMenu="matMenu" xPosition="before" style="display:none;">
+                        <button mat-menu-item>Review</button>
+                        <button mat-menu-item>Cancel</button>
+                        <button mat-menu-item>Print</button>
+                        <button mat-menu-item>Invoice</button>
+                      </mat-menu>
+                    </div>
+                  </div>
+                  <div class="row" style="justify-content: space-between;">
+                    <div class="col-md-9 col-9">
+                      <h6>
+                        <strong class="content-align">Booked Date:</strong>{{history.BookedDate | date}}
+                      </h6>
+                    </div>
+                    <div class="col-sm-3 col-3">
+                      <h3 class="content__end" style="margin-right: 8px;">
+                        {{history.TxnAmount}}
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="row" style="justify-content: space-between;">
+                    <div class="col-md-8">
+                      <h6>
+                        <strong class="content-align">Event Date:</strong>{{history.EventDate | date}}
+                      </h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h6>
+                        {{history.EventName}}
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <mat-card class="example-card">
+      <div class="conatiner-fluid">
+        <div class="row">
+          <div class="col-sm-4 col-xs-12">
+            <img
+              class="img-responsive"
+              src="https://i.vimeocdn.com/video/685774105.webp?mw=1000&mh=563&q=70"
+              alt=""
+            />
+          </div>
+          <div class="col-sm-8 col-xs-12">
+            <div class="row" style="justify-content: space-between;">
+              <div class="col-sm-6 col-6">
+                <h6><strong>Tickets :</strong>201</h6>
+              </div>
+              <div class="col-sm-2 col-2">
+                <mat-icon [matMenuTriggerFor]="beforeMenu" class="mat-icon"
+                  >more_vert</mat-icon
+                >
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                  <button mat-menu-item>Review</button>
+                  <button mat-menu-item>Cancel</button>
+                  <button mat-menu-item>Print</button>
+                  <button mat-menu-item>Invoice</button>
+                </mat-menu>
+              </div>
+            </div>
+            <div class="row" style="justify-content: space-between;">
+              <div class="col-md-9 col-9">
+                <h6><strong>Booked Date:</strong>12/12/2019</h6>
+              </div>
+              <div class="col-md-3 col-3"><strong>$2500</strong></div>
+            </div>
+            <div class="row" style="justify-content: space-between;">
+              <div class="col-md-8">
+                <h6><strong>Travelling Date:</strong>12/12/2019</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h6>
+                  Block B Peoples Colony No 1 Faisalabad
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card> -->
+
+  <!-- </div> -->
+</div>

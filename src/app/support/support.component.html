@@ -1,0 +1,48 @@
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+  <h3 class="text-center head-spacing">Support</h3><br>
+  <h4 class="col-sm-12 p-2 text-center mb-5">If you have any queries feel free to reach us. We will reply at the earliest</h4>
+  <div class="row  d-flex justify-content-center">
+    <form method="post" class="form-horizontal" [formGroup]="supportForm" name="supportForm" autocomplete="off"
+      id="supportForm" (ngSubmit)="SendRemarks()">
+      <div>
+        <div class="row  d-flex justify-content-center">
+          <div class="col-sm-6 form-group d-flex justify-content-center">
+            <input class="form-control" id="name" name="UserName" formControlName="UserName" placeholder="Name"
+              type="text" [ngClass]="{ 'is-invalid': !support.UserName.valid && support.UserName.touched }" required>
+            <div *ngIf="!support.UserName.valid && support.UserName.errors" class="invalid-feedback">
+              <div *ngIf="support.UserName.errors.required">User Name is required</div>
+            </div>
+          </div>
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="email" name="email" placeholder="Email" type="email"
+              [ngClass]="{ 'is-invalid': !support.Email.valid && support.Email.touched }" required>
+            <div *ngIf="!support.Email.valid && support.Email.errors" class="invalid-feedback">
+              <div *ngIf="support.Email.errors.required">Email is required</div>
+              <div *ngIf="support.Email.errors.email">Invalid Email</div>
+            </div>
+          </div>
+        </div>
+        <textarea class="form-control" id="Remarks" name="Remarks" placeholder="Comment" rows="5"
+          formControlName="Remarks"
+          [ngClass]="{ 'is-invalid': !support.Remarks.valid && support.Remarks.touched }"></textarea>
+        <div *ngIf="!support.Remarks.valid && support.Remarks.errors" class="invalid-feedback">
+          <div *ngIf="support.Remarks.errors.required">Comments is required</div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <button class="btn pull-right" type="submit">Send</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+
+      </div>
+    </form>
+  </div>
+  <br>
+
+
+
+</div>

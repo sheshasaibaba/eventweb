@@ -1,0 +1,171 @@
+@media only screen and (min-width : 450px) and (max-width: 768px) {
+  .mat-toolbar-row {
+    padding: 0px 10px !important;
+  }
+
+
+}
+
+@media only screen and (min-width : 424px) and (max-width: 450px) {
+  .bcfmenu {
+    text-align: right !important;
+  }
+
+  .mr-4-icon {
+    margin-right: 0px !important;
+  }
+}
+
+
+@media only screen and (min-width : 395px) and (max-width: 424px) {
+  .bcfmenu {
+    text-align: left !important;
+    margin-left: 15px;
+  }
+
+  .mr-4-icon {
+    margin-right: 10px !important;
+  }
+
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    padding: 10px !important;
+  }
+}
+
+@media (max-width: 394px) {
+  .bcfmenu {
+    text-align: left !important;
+    margin-left: 10px;
+  }
+
+  .w-50 {
+    width: 45% !important;
+  }
+
+  .mr-4-icon {
+    margin-right: 5px !important;
+  }
+
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    padding: 3px !important;
+  }
+}
+
+
+@media (max-width: 363px) {
+  .bcfmenu {
+    text-align: left !important;
+  }
+
+  .w-50 {
+    width: 42% !important;
+  }
+
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    padding: 4px !important;
+  }
+
+  .mr-4-icon {
+    margin-right: 0px !important;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    height: 64px;
+    padding: 0px 130px;
+  }
+}
+
+.context-dark,
+.bg-gray-dark,
+.bg-primary {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+}
+
+mat-toolbar {
+  background-color: #fff;
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  padding: 0px !important;
+  box-shadow: 0 1px 1px 0 rgba(168, 166, 166, 0.2), 0 3px 10px 0 rgba(209, 205, 205, 0.19) !important;
+}
+
+.bcfmenu {
+  font-size: 13px;
+  text-align: end;
+}
+
+.notifications {
+  position: absolute;
+  top: -7px;
+  left: 15px;
+  width: 22px;
+  height: 23px;
+  overflow: hidden;
+  background-color: rgba(245, 245, 220, 0.295);
+  border-radius: 50%;
+  text-align: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%
+}
+
+footer .navbar {
+  padding: 0px;
+}
+
+footer .navbar a {
+  padding: 0px !important
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.nav-item {
+  padding: 0px 5px;
+}
+
+.arrow-pos {
+  cursor: pointer;
+}
+
+.mr-4-icon {
+  margin-right: 1.5rem;
+}
+
+.notif {
+  width: 100%;
+  border-bottom: 1px solid grey;
+  font-size: 12px;
+}
+
+.icon-close {
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  color: darkgrey;
+}
+
+.no-notifiations {
+  color: lightgrey;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

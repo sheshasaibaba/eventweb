@@ -1,0 +1,36 @@
+<div  class="container mt-2 mb-4">
+  <div id="loginbox" class="col-sm-8 ml-auto mr-auto">
+    <ul class="nav nav-pills nav-fill mb-1" id="pills-tab" role="tablist">
+      <li class="nav-item"> <a class="nav-link active" id="pills-signin-tab" data-toggle="pill" href="#pills-signin" role="tab" aria-controls="pills-signin" aria-selected="true">Forgot Password</a> </li>
+      <li></li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active mb-5" id="pills-signin" role="tabpanel" aria-labelledby="pills-signin-tab">
+        <div class="col-sm-12 border  shadow rounded pt-2">
+          <form method="post" class="form-horizontal" [formGroup]="forgotForm" name="forgotForm" autocomplete="off"
+                id="forgotForm" (ngSubmit)="SendRequest()" >
+              <div class="form-group row">
+                <h5 class="modal-title" *ngIf="this.responseStat != ''" >{{this.responseStat}}</h5>
+              </div>
+
+              <div class="form-group row">
+              <label class="font-weight-bold col-sm-4">Email <span class="text-danger">*</span></label>
+              <div class="col-sm-8">
+                <input type="email" name="signupemail" class="form-control" formControlName="Email"
+                  [ngClass]="{ 'is-invalid': !reg?.Email?.valid && reg?.Email?.touched }"
+                  placeholder="Enter Valid Email" required>
+                <div *ngIf="!reg?.Email?.valid && reg?.Email?.touched" class="invalid-feedback">
+                  <div *ngIf="reg?.Email?.errors?.required">Email is required</div>
+                  <div *ngIf="reg?.Email?.errors?.email">Invalid Email</div>
+                </div>
+              </div>
+            </div>         
+	     <div class="form-group text-center">
+                <button type="submit" name="forgotPass" [disabled]="forgotForm.invalid" class="btn btn-primary"><i class="fa fa-envelope"></i> Send Request</button>
+              </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>

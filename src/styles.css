@@ -1,0 +1,210 @@
+/* You can add global styles to this file, and also import other style files */
+/*
+----------------------------------------------------------------------------------------
+installations
+-----------------------------------------------------------------------------------------
+ng add @angular/material@7.2.0 (or) npm install @angular/material@7.2.0 (angular material)
+npm install bootstrap -v 4.3.1 (bootstrap)
+npm install jquery --save (jquery)
+npm install popper.js --save (popper)
+npm install --save @ng-bootstrap/ng-bootstrap (angualar bootstap)
+
+-------------------------------------------- 
+add styles and scripts in"angular.json" file 
+--------------------------------------------
+
+ "styles": [
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+  "src/styles.css"
+  ],
+"scripts": [
+  "./node_modules/jquery/dist/jquery.min.js",  
+  "./node_modules/popper.js/dist/umd/popper.min.js",  
+  "./node_modules/bootstrap/dist/js/bootstrap.min.js" 
+  ],
+  
+  -----------------------------------------------
+  if conclict (global cli is greater than local)
+  ng config -g cli.warnings.versionMismatch false
+  -----------------------------------------------
+ */
+
+@import '../node_modules/ngx-sharebuttons/styles/themes/material/material-dark-theme.css';
+@import '../node_modules/ngx-sharebuttons/styles/themes/modern/modern-light-theme.css';
+
+
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url(./assets/fonts/HelveticaNeue-Roman.otf);
+}
+
+@font-face {
+  font-family: HelveticaNeueBold;
+  src: url(./assets/fonts/HelveticaNeue-Bold.ttf);
+}
+
+@font-face {
+  font-family: HelveticaNeueMedium;
+  src: url(./assets/fonts/HelveticaNeueMedium.ttf);
+}
+
+* {
+  box-sizing: border-box
+}
+
+*:focus {
+  outline: none !important;
+}
+
+img,
+li {
+  cursor: pointer;
+}
+
+/* Scroll bar styles */
+/*width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 7px rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+body {
+  color: rgba(0, 0, 0, 0.993);
+  background-color: rgba(250, 250, 250, 0.918);
+  /* background-image: url(./assets/images/sketchs.png); */
+}
+
+/*nav bar styles*/
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+/*shado effects*/
+.shad {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
+  border-radius: 0px !important;
+}
+
+.shad:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
+  border-radius: 0px !important;
+}
+
+.card {
+  -webkit-box-shadow: 0px 2px 18px -1px rgba(143, 140, 143, 0.75);
+  -moz-box-shadow: 0px 2px 18px -1px rgba(143, 140, 143, 0.75);
+  box-shadow: 0px 2px 18px -1px rgba(143, 140, 143, 0.75);
+}
+
+.cs-panel-padding div.mat-expansion-panel-body {
+  padding: 0;
+}
+
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 350px;
+}
+
+.bcf-card-hover {
+  transition: transform 0.5s linear;
+}
+
+.bcf-card-hover:hover {
+  transform: translateY(-5px);
+}
+
+.list-unstyled li {
+  position: relative;
+  padding: 0em 0em 0.5em 1.5em;
+  /* space to preserve indentation on wrap */
+}
+
+.list-unstyled li::before {
+  content: '✓';
+  position: absolute;
+  left: 5px;
+  /* place the SVG at the start of the padding */
+  width: 1.5em;
+  height: 1em;
+  background: -webkit-linear-gradient(to right, #333333, #dd1818);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: #dd1818;
+}
+
+.cs-panel-padding .row,
+.cs-panel-padding .container {
+  padding: 0px !important
+}
+
+.bcf_primary {
+  background-color: #68A64A;
+  color: #fff
+}
+
+.bcf_primary_1 {
+  background-color: rgba(105, 166, 74, 0.781);
+  color: #fff
+}
+
+.bcf_primary_1:hover {
+  color: rgba(105, 166, 74, 0.781);
+  background-color: #fff
+}
+
+.bcf_secondary {
+  background-color: #34CE98;
+  color: #fff
+}
+
+.bcf_secondary_button {
+  color: #34CE98;
+  background-color: transparent
+}
+
+.bcf_secondary_lite {
+  color: rgba(52, 206, 152, 0.658);
+  background-color: #fff
+}
+
+.cus_bg_c {
+  background: #68A64A;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #68A64A, rgba(52, 206, 152, 0.685));
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #68A64A, rgba(83, 134, 117, 0.685));
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

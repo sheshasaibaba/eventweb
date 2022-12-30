@@ -1,0 +1,61 @@
+@media (max-width: 414px) {
+  .carousel-inner img {
+    height: 250px;
+  }
+  .datesmall
+  {
+	  font-size:12px;
+  }
+  .datelarge
+  {
+	  display:none;
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel-inner img {
+    height: 450px;
+  }
+   .datelarge
+  {
+	  font-size:15px;
+  }
+  .datesmall
+  {
+	  display:none;
+  }
+}
+
+.card {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.10) !important
+}
+
+.card:hover {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.39) !important;
+  border-radius: 0px !important;
+}
+
+.material-icons {
+  cursor: pointer;
+}
+
+.add-to-calendar {
+  color: #3DCC99 !important
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  place-content: center;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  place-content: center;
+}
+
+.mt-neg{
+    margin-top: -18px !important;
+}

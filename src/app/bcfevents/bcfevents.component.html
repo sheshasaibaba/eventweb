@@ -1,0 +1,65 @@
+<div class="search">
+  <div *ngIf="selectedLocation" class="form-inline">
+
+    <ul class="navbar-nav mr-auto" style="min-width: 100px;">
+      <li class="nav-item dropdown">
+        <a style="color:#fff" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <i class="fa fa-map-marker"></i> {{locationName}}
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a *ngFor="let item of locations" class="dropdown-item"
+            (click)="SelectiveLocation(item.LocationId)">{{item.LocationName}}</a>
+        </div>
+      </li>
+    </ul>
+    <button class="ml-3" style="color:#fff" mat-icon-button [matMenuTriggerFor]="menu"
+      aria-label="Example icon-button with a menu">
+      <mat-icon>account_circle</mat-icon>
+      <mat-menu #menu="matMenu">
+        <li *ngIf="username != ''" style="list-style-type:none;padding:0.5em">Hai, {{username}}</li>
+        <li [routerLink]="'/bcfevents'" style="list-style-type:none;padding:0.5em">Home</li>
+        <li *ngIf="username == ''" (click)="gotoSignin()"  style="list-style-type:none;padding:0.5em">Sign
+          In/Sign Up</li>
+        <li *ngIf="username != ''" [routerLink]="'/profile'" style="list-style-type:none;padding:0.5em">
+          Profile
+        </li>
+        <li *ngIf="username != ''" [routerLink]="'/orders'" style="list-style-type:none;padding:0.5em">
+          Orders
+        </li>
+        <li [routerLink]="'/terms'" style="list-style-type:none;padding:0.5em">Terms and Condition</li>
+        <li [routerLink]="'/cancellation-policy'" style="list-style-type:none;padding:0.5em">Cancellation policy
+        </li>
+        <li [routerLink]="'/faq'" style="list-style-type:none;padding:0.5em">FAQs</li>
+        <li *ngIf="username != ''" (click)="Logout()" style="list-style-type:none;padding:0.5em">Sign out</li>
+      </mat-menu>
+    </button>
+  </div>
+
+  <!-- <mat-form-field class="w-50">
+    <mat-select [(ngModel)]="selectedLocation" matNativeControl (selectionChange)="SelectiveLocation($event.value)">
+      <mat-option *ngFor="let loc of locations" [value]="loc.LocationId">
+        {{loc.LocationName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+</div>
+<section id="bcfevents">
+  <div class="container-fluid">
+    <div id="bcftitle">
+      <img src="./assets/images/bcflogo.png" class="img-fluid" alt="Category">
+    </div>
+    <div class="pt-5 text-center">
+      <span *ngFor="let cat of CategoryList" class="font-weight-bold m-1" (click)="goToevents(cat)"
+        routerLinkActive="font-weight-light">
+        <figure class="bcf-card-hover figure">
+          <img src="{{cat.Icon}}" class=" img-fluid " style="max-width:150px;" alt="Category">
+          <figcaption style="color:white;">{{cat.NAME}}</figcaption>
+        </figure>
+      </span>
+    </div>
+  </div>
+</section>
+

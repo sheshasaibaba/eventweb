@@ -1,0 +1,218 @@
+<div class="container mt-5 pt-5">
+  <div class="row">
+
+    <div class="col-lg-3  text-center">
+      <img src="./assets/images/Sports.jpg" id="userimg" class="img-fluid img-thumbnail" style="width:150px"
+        alt="avatar">
+      <h6 class="mt-2">Upload a different photo</h6>
+      <div class="form-group small">
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+      <button class="btn btn-primary btn-sm m-2">Edit Profile</button>
+    </div>
+    <div class="col-lg-9">
+      <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item">
+          <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+        </li>
+        <!---  <li class="nav-item">
+                    <a href="" data-target="#bookinghistory" data-toggle="tab" class="nav-link">Booking History</a>
+                </li>-->
+        <li class="nav-item">
+          <a href="" data-target="#changepassword" data-toggle="tab" class="nav-link">Change Password</a>
+        </li>
+      </ul>
+      <div class="tab-content py-4">
+        <div class="tab-pane active" id="profile">
+          <!-- <form role="form" > -->
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">First name</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="firstname" value="{{customerinfo.FirstName}}"
+                [disabled]="true">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="lastname" value="{{customerinfo.LastName}}"
+                [disabled]="true">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Username</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="username" value="{{customerinfo.UserName}}"
+                [disabled]="true">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="email" name="email" value="{{customerinfo.Email}}" [disabled]="true">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Landmark</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" value="{{customerinfo.Landmark}}" name="landmark"
+                [disabled]="true">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Address</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" value="{{customerinfo.Address}}" name="address" [disabled]="true">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label"></label>
+            <div class="col-lg-6">
+              <input class="form-control" type="text" value="" name="city" placeholder="">
+            </div>
+            <div class="col-lg-3">
+              <input class="form-control" type="text" value="" name="state" placeholder="">
+            </div>
+          </div>
+          <!-- </form> -->
+        </div>
+
+        <div class="tab-pane" id="bookinghistory">
+          <div class="container">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-6">
+                    <address>
+                      <strong>Event Name
+                        <span class="ml-1 badge badge-info badge-secondary">5
+                          <i class="pl-1 small material-icons">star_half</i>
+                        </span>
+                      </strong>
+                    </address>
+                  </div>
+                  <div class="row">
+                    <div class="col-6 ">
+                      <p>Pickup Location
+                        <i>
+                          <img class="img-responsive" src="./assets/images/map.png" style="width:15px; height:18px">
+                        </i>
+                        Hyderabad
+                      </p>
+                    </div>
+                    <div class="col-6 text-right">
+                      <p>No of Tickets : 4
+                      </p>
+                    </div>
+
+                    <table class="table table-hover table-responsive table-sm">
+                      <thead>
+                        <tr>
+                          <th class="col-sm-2">Ticket Type</th>
+                          <th class="col-sm-2">No.Of Tickets</th>
+                          <th class="col-sm-2 text-center">Price</th>
+                          <th class="col-sm-2 text-center">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><em>Adult </em></td>
+                          <td><em>2 </em></td>
+                          <td class="text-center">10000</td>
+                          <td class="text-center">20000</td>
+                        </tr>
+                        <tr>
+                          <td><em>Child</em></td>
+                          <td><em>2 </em></td>
+                          <td class="text-center">10000</td>
+                          <td class="text-center">20000</td>
+                        </tr>
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td class="text-right">
+                            <strong>Total: </strong>
+                          </td>
+                          <td class="text-center">
+                            <strong>40000</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <textarea name="comment" class="form-control" placeholder="Comments"></textarea>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-primary btn-sm mx-auto">
+                              Submit
+                            </button>
+                          </td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="changepassword">
+          <form method="post" class="form-horizontal" [formGroup]="UpdatepasswordForm" name="UpdatepasswordForm"
+            id="UpdatepasswordForm" (ngSubmit)="UpdatePassword()">
+
+            <div class="form-group row">
+              <label class="col-lg-3 col-form-label form-control-label">Current Password</label>
+              <div class="col-lg-9">
+                <input class="form-control" type="password" name="cpassword" placeholder="***********"
+                  pattern="^\S{6,}$" formControlName="currentPassword"
+                  [ngClass]="{ 'is-invalid': !reg.currentPassword.valid && reg.currentPassword.touched }" required>
+                <div *ngIf="!reg.currentPassword.valid && reg.currentPassword.touched" class="invalid-feedback">
+                  <div *ngIf="reg.currentPassword.errors.required">Password is required</div>
+                  <div *ngIf="reg.currentPassword.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-3 col-form-label form-control-label">New Password</label>
+              <div class="col-lg-9">
+                <input class="form-control" type="password" name="newpawd" placeholder="***********" pattern="^\S{6,}$"
+                  formControlName="newPassword"
+                  [ngClass]="{ 'is-invalid': !reg.newPassword.valid && reg.newPassword.touched }" required>
+                <div *ngIf="!reg.newPassword.valid && reg.newPassword.touched" class="invalid-feedback">
+                  <div *ngIf="reg.newPassword.errors.required">Password is required</div>
+                  <div *ngIf="reg.newPassword.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-3 col-form-label form-control-label">Confirm Password</label>
+              <div class="col-lg-9">
+                <input class="form-control" type="password" name="cnfpswd" placeholder="***********" pattern="^\S{6,}$"
+                  formControlName="newcnfPassword"
+                  [ngClass]="{ 'is-invalid': !reg.newcnfPassword.valid && reg.newcnfPassword.touched }" required>
+                <div *ngIf="!reg.newcnfPassword.valid && reg.newcnfPassword.touched" class="invalid-feedback">
+                  <div *ngIf="reg.newcnfPassword.errors.required">Password is required</div>
+                  <div *ngIf="reg.newcnfPassword.errors.minlength">Password must be at least 6 characters</div>
+                  <div *ngIf="reg.newcnfPassword.errors.mustMatch">Passwords must match</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <button type="submit" name="changepswd" value="Update Password"
+                class="btn btn-primary btn-sm mx-auto">Update Password
+              </button>
+
+            </div>
+          </form>
+          <!--/row-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

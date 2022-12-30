@@ -1,0 +1,238 @@
+<div class="container mt-5 mb-5">
+  <div class="py-4 text-center">
+    <h2>Booking</h2>
+  </div>
+  <div class="card row">
+    <div class="mt-1 col-md-12  mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Your cart</span>
+      </h4>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex lh-condensed">
+          <div>
+            <h6 *ngIf="eventdata.EventName" class="my-0">Event: {{eventdata.EventName}}</h6>
+            <!--
+            <small class="font-italic text-secondary">Adults: 3</small><br>
+            <small class="font-italic text-secondary">Kids: 4</small><br>
+            <small>Starts from 19/08/19</small><br>
+            -->
+            <br>
+            <small *ngIf="eventdata.LocationName">
+              <b>Event Location: </b>
+              <span>{{eventdata.LocationName}}</span>
+            </small><br>
+            <small>
+              Event Date:
+              <span *ngFor="let event of eventinfo.dates;">{{event.FromDate | date}} |</span>
+            </small>
+            <small>
+              Starting point:
+              <span *ngFor="let loc of eventinfo.pickups;">{{loc.PickupLocation}} </span>
+            </small>
+          </div>
+        </li>
+        <!--   <li *ngIf="eventdata.Highlights" class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class=" pt-4">Highlights</h6>
+            <div class="text-justify" [innerHTML]="eventdata.Highlights"></div>
+          </div>
+        </li>
+
+
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class=" pt-3">Inclusions</h6>
+            <div *ngFor="let plan of eventinfo.plans" [innerHTML]="plan.Inclusions"></div>
+          </div>
+        </li>
+
+        <li  *ngIf="eventdata.WhatToExpect" class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class=" pt-3">What to expect</h6>
+            <div [innerHTML]="eventdata.WhatToExpect"></div>
+          </div>
+        </li>-->
+
+
+        <li class="list-group-item d-flex lh-condensed">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="mr-6 col-sm-5 mb-4">
+                <h6 class=" pt-3">Booking Summary</h6>
+                <div *ngFor="let plan of bookingPlan">
+                  <p>{{plan.TicketTypeName}} - {{plan.noOfTickets}} Ticket(s) X {{plan.eventPrice}} per ticket </p>
+                </div>
+                <span class="mr-6 col-sm-12 mb-4 row d-flex justify-content-center">
+                  <p class="mr-2"> Amount payable - {{eventBookingDetails.totalBookingPrice}}/-</p>
+                  <span *ngIf="hasDiscount" style="color:#0ece0e; font-size: 14px"><i>You saved
+                      {{availedDiscount}}&#8377;({{ticketDiscount}}% off)</i></span>
+                </span>
+              </div>
+              <div  *ngIf="!hasDiscount" class="col-sm-5 mb-4 mt-3">
+                <div class="mb-4 mr-4">
+                  <input type="text" class="form-control" placeholder="Enter Coupon" [formControl]="couponCode">
+                </div>
+                <div>
+                  <button class="btn btn-primary" [disabled]="!couponCode.value" type="submit"
+                    (click)="submitCoupon()">Apply Coupon</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+    <hr>
+    <div *ngIf="checkoutForm" class="col-md-11 align-self-center">
+      <h4 class="mb-3">Book Tickets</h4>
+      <form class="needs-validation " role="form" name="checkoutForm" [formGroup]="checkoutForm"
+        (ngSubmit)="CheckoutReg()">
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="col-md-12">
+              <label>Location<span class="text-danger">*</span></label>
+              <select class="form-control" required formControlName="PickupId" name="pickups"
+                [ngClass]="{ 'is-invalid': !checkout.PickupId.valid && checkout.PickupId.touched }">
+                <option value="">-- Select --</option>
+                <option value="{{pickup.PickupId}}" *ngFor="let pickup of eventinfo.pickups">
+                  {{pickup.PickupLocation}} - {{pickup.PickupTime | date }}
+                </option>
+              </select>
+              <div *ngIf=" !checkout.PickupId.valid  && checkout.PickupId.touched" class="invalid-feedback">
+                <div *ngIf="checkout.PickupId.errors.required">Pickup Location Required</div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label>Event Date<span class="text-danger">*</span></label>
+              <select class="form-control" required formControlName="EventDate" name="EventDate"
+                [ngClass]="{ 'is-invalid': !checkout.EventDate.valid && checkout.EventDate.touched }">
+                <option value="">-- Select Event Date --</option>
+                <option value="{{eventon.EventDateId}}" *ngFor="let eventon of eventinfo.dates">
+                  {{eventon.FromDate | date }} - {{eventon.ToDate | date }}
+                </option>
+              </select>
+              <div *ngIf="!checkout.EventDate.valid && checkout.EventDate.touched" class="invalid-feedback">
+                <div *ngIf="checkout.EventDate.errors.required">Event Date Required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="remarks">Remarks</label>
+              <textarea class="form-control" rows="5" id="remarks" name="remarks" formControlName="Remarks"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mb-3">Participant/s
+          <span style="float: right"
+            [hidden]="checkoutForm?.value?.registries?.length === eventBookingDetails?.noOfTickets">
+            <button class="btn btn-sm btn-info" (click)="addExtra()">Add</button>
+          </span>
+        </h5>
+
+        <ng-container formArrayName="registries">
+          <div class="card" style="margin:10px;padding:10px; " [formGroupName]="i"
+            *ngFor="let customer of extraUsers.controls; let i = index">
+
+            <div class="row">
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-4 mb-4">
+                    <input type="text" class="form-control" name="cuname_{{i}}" placeholder="Name *" [ngClass]="{ 'is-invalid': !checkout.registries.controls[i].controls.CustomerName.valid 
+                      && checkout.registries.controls[i].controls.CustomerName.touched }"
+                      formControlName="CustomerName" required>
+                    <div
+                      *ngIf="!checkout.registries.controls[i].controls.CustomerName.valid && checkout.registries.controls[i].controls.CustomerName.touched"
+                      class="invalid-feedback">
+                      <div *ngIf="checkout.registries.controls[i].controls.CustomerName.errors.required">Customer name
+                        is required</div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4 mb-4">
+                    <input type="number" class="form-control" name="extage_{{i}}" placeholder="Age *" [ngClass]="{ 'is-invalid': !checkout.registries.controls[i].controls.Age.valid 
+                    && checkout.registries.controls[i].controls.Age.touched }" formControlName="Age" required>
+                    <div
+                      *ngIf="!checkout.registries.controls[i].controls.Age.valid && checkout.registries.controls[i].controls.Age.touched"
+                      class="invalid-feedback">
+                      <div *ngIf="checkout.registries.controls[i].controls.Age.errors.required">Age
+                        is required</div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4 mb-4">
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="M" id="Gender1_{{i}}"
+                          formControlName="Gender"> Male
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="F" id="Gender2_{{i}}"
+                          formControlName="Gender">Female
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4 mb-4">
+                    <input type="email" class="form-control" name="email_{{i}}" placeholder="Email *" [ngClass]="{ 'is-invalid': !checkout.registries.controls[i].controls.Email.valid 
+                    && checkout.registries.controls[i].controls.Email.touched }" formControlName="Email" required>
+                    <div
+                      *ngIf="!checkout.registries.controls[i].controls.Email.valid && checkout.registries.controls[i].controls.Email.touched"
+                      class="invalid-feedback">
+                      <div *ngIf="checkout.registries.controls[i].controls.Email.errors.required">Email
+                        is required</div>
+                      <div *ngIf="checkout.registries.controls[i].controls.Email.errors.email">Invalid Email</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 mb-4">
+                    <input type="text" class="form-control" name="contact_{{i}}" placeholder="Contact No *" [ngClass]="{ 'is-invalid': !checkout.registries.controls[i].controls.ContactNo.valid 
+                    && checkout.registries.controls[i].controls.ContactNo.touched }" formControlName="ContactNo"
+                      required>
+                    <div
+                      *ngIf="!checkout.registries.controls[i].controls.ContactNo.valid && checkout.registries.controls[i].controls.ContactNo.touched"
+                      class="invalid-feedback">
+                      <div *ngIf="checkout.registries.controls[i].controls.ContactNo.errors.required">Contact number
+                        is required</div>
+                      <div *ngIf="checkout.registries.controls[i].controls.ContactNo.errors.pattern">Invalid Contact
+                        number
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4 mb-4" *ngIf="extraUsers.controls.length > 1">
+                    <select class="form-control" name="TicketType_{{i}}" formControlName="TicketType">
+                      <option value="{{plan.TicketType}}" *ngFor="let plan of eventinfo.plans">
+                        {{plan.TicketTypeName}} <span *ngIf="plan.EventPrice > 0">- Rs. {{plan.EventPrice}}</span>
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-sm-2" *ngIf="i > 0">
+                <div class="form-check-inline">
+                  <button class="btn-sm btn-danger" (click)="removeExtraUser(i)">Remove</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </ng-container>
+
+        <button class="mt-1 mb-5 btn btn-primary btn-lg btn-block" [disabled]="!checkoutForm.valid"
+          type="submit">Proceed To
+          Pay</button>
+      </form>
+    </div>
+  </div>
+
+</div>

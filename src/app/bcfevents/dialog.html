@@ -1,0 +1,16 @@
+<div class="text-center">
+    <img src="./assets/images/Logo.png" class="img-fluid" alt="Category">
+
+    <hr>
+    <label *ngIf="!data">Fetching locations....</label>
+    <div *ngIf="data" class="input-group form-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+        </div>
+        <select class="form-control" (change)="SelectiveLocation($event)">
+            <option>-- Select City --</option>
+            <option *ngFor="let item of data.locationData" value="{{item}}">{{item.LocationName}}
+            </option>
+        </select>
+    </div>
+</div>

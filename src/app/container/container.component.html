@@ -1,0 +1,81 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <mat-icon class="float-left arrow-pos mr-4-icon" (click)="goBack()">arrow_back</mat-icon>
+    <img routerLink="/bcfevents" src="./assets/images/Logo.png" style="padding:10px 0px;width:150px;height:65px;"
+      alt="BCF">
+    <span class="example-spacer"></span>
+    <div class="bcfmenu">
+      <mat-form-field class="mat-small w-50">
+        <mat-select [(ngModel)]="selectedLocation" (selectionChange)="SelectiveLocation($event.value)"
+          [disabled]="disabledSelect">
+          <mat-option *ngFor="let loc of locations" [value]="loc.LocationId">
+            {{loc.LocationName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span class="ml-2" *ngIf="username != ''" style="position: relative;">
+        <button class="ml-2 row" [ngClass]="{ 'no-notifiations': userNotifications.length === 0 }" mat-icon-button
+          [matMenuTriggerFor]="nnotf" aria-label="Example icon-button with a menu">
+          <i class="fa fa-bell fa-lg" aria-hidden="true"></i>
+          <i *ngIf="userNotifications" class="notifications">{{userNotifications.length}}</i>
+          <mat-menu #nnotf="matMenu">
+            <span *ngFor="let notf of userNotifications">
+              <li style="list-style-type:none;padding:0.5em">
+                <label class="notif">{{notf.Msg}}<mat-icon class="float-right icon-close cursor-pointer"
+                    (click)="closeNotifications(notf)">
+                    close</mat-icon></label>
+
+              </li>
+
+            </span>
+          </mat-menu>
+        </button>
+      </span>
+      <button class="ml-2" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>account_circle</mat-icon>
+        <mat-menu #menu="matMenu">
+          <li *ngIf="username != ''" style="list-style-type:none;padding:0.5em">Hai, {{username}}</li>
+          <li [routerLink]="'/bcfevents'" style="list-style-type:none;padding:0.5em">Home</li>
+          <li *ngIf="username == ''" (click)="goToSignIn()" style="list-style-type:none;padding:0.5em">Sign In/Sign Up
+          </li>
+          <li *ngIf="username != ''" [routerLink]="'/profile'" style="list-style-type:none;padding:0.5em">Profile</li>
+          <li *ngIf="username != ''" [routerLink]="'/orders'" style="list-style-type:none;padding:0.5em">Orders</li>
+          <li [routerLink]="'/terms'" style="list-style-type:none;padding:0.5em">Terms and Condition</li>
+          <li [routerLink]="'/cancellation-policy'" style="list-style-type:none;padding:0.5em">Cancellation policy
+          </li>
+          <li [routerLink]="'/faq'" style="list-style-type:none;padding:0.5em">FAQs</li>
+          <li *ngIf="username != ''" (click)="Logout()" style="list-style-type:none;padding:0.5em">Sign out</li>
+        </mat-menu>
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+<footer>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/bcfevents">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/contact-us">Contact Us</a>
+      </li>
+
+      <!--<li class="nav-item dropup">-->
+      <!--<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">-->
+      <!--Menu-->
+      <!--</a>-->
+      <!--<div class="dropdown-menu">-->
+      <!--<a class="dropdown-item" routerLink="/backpacking">Back Packing</a>-->
+      <!--<a class="dropdown-item" routerLink="/cityfreaks">City Freaks</a>-->
+      <!--<a class="dropdown-item" routerLink="/sports">Sports</a>-->
+      <!--<a class="dropdown-item" routerLink="/socialresponsibility">Social Responsibility</a>-->
+      <!--</div>-->
+      <!--</li>-->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home/support">Support</a>
+      </li>
+    </ul>
+  </nav>
+</footer>

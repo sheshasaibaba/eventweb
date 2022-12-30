@@ -1,0 +1,195 @@
+<div>
+  <div style="height: 60vh;">
+    <div class="img">
+      <div style="padding: 35px;">
+        <span style="font-size: 30px;">Login</span>
+      </div>
+    </div>
+    <div class="content rounded pt-4" style="height: 100%">
+      <form method="post" role="form" class="form-horizontal" name="loginForm" novalidate #loginForm="ngForm"
+        autocomplete="off" style="height: 100%">
+        <ng-container [ngSwitch]="loginView">
+          <!-- Check user BEGIN -->
+          <ng-container *ngSwitchCase="'enterId'">
+            <div class="form-group" style="margin-top: 32px;">
+              <div class="col-sm-12">
+                <!-- <label class="font-weight-bold col-sm-12">Email Id/Mobile No<span class="text-danger">*</span></label> -->
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email Address or Phone Number</mat-label>
+                  <input name="userid" #userid="ngModel" id="userid" [(ngModel)]="Login.UserId"
+                    pattern="^([_a-zA-Z0-9]+(\.[_a-zA_Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,5}))|([6-9]{1}[0-9]{9})$"
+                    matInput placeholder="" value="" required>
+                  <mat-error *ngIf="userid?.errors?.required">Email Id/Mobile Number is required</mat-error>
+                  <mat-error *ngIf="!userid?.errors?.required && userid?.errors?.pattern">Invalid Email Id/Mobile Number
+                  </mat-error>
+                </mat-form-field>
+                <div class="form-group d-flex justify-content-center">
+                  <button mat-raised-button (click)="LoginApp(null, 1)"
+                    style="margin-top:16px;width: 100%;background-color: #fb641b;cursor: pointer;color: #ffffff"
+                    [disabled]="loginForm.form.invalid">Submit</button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <!-- check user END -->
+
+          <!-- OTP BEGIN -->
+          <ng-container *ngSwitchCase="'enterOTP'">
+            <div class="d-flex justify-content-center" style="margin-top: 32px;">
+              <label>Enter OTP</label>
+            </div>
+            <div class="form-group d-flex justify-content-center" style="margin-top: 16px;">
+              <form [formGroup]="otpForm" class="col-sm-8 d-flex justify-content-center">
+                <input formControlName="otp1" id="codeBox1" type="number" (keyup)="onKeyUpEvent(1, $event)"
+                  (focus)="onFocusEvent(1)" />
+                <input formControlName="otp2" id="codeBox2" type="number" (keyup)="onKeyUpEvent(2, $event)"
+                  (focus)="onFocusEvent(2)" />
+                <input formControlName="otp3" id="codeBox3" type="number" (keyup)="onKeyUpEvent(3, $event)"
+                  (focus)="onFocusEvent(3)" />
+                <input formControlName="otp4" id="codeBox4" type="number" (keyup)="onKeyUpEvent(4, $event)"
+                  (focus)="onFocusEvent(4)" />
+                <input formControlName="otp5" id="codeBox5" type="number" (keyup)="onKeyUpEvent(5, $event)"
+                  (focus)="onFocusEvent(5)" />
+                <input formControlName="otp6" id="codeBox6" type="number" (keyup)="onKeyUpEvent(6, $event)"
+                  (focus)="onFocusEvent(6)" />
+
+                <div *ngIf="OTPError" class="invalid-feedback">
+                  Invalid OTP
+                </div>
+              </form>
+            </div>
+            <div class="d-flex justify-content-center mb-3">
+              <label (click)="resendOTP(null, resendOTPStatus)"
+                [ngClass]="OTPError ? 'resend-otp-bg-error mr-3' : 'resend-otp-bg mr-3'">Resend OTP</label>
+              <label class="resend-otp-bg" (click)="clearOtp()">Clear</label>
+            </div>
+          </ng-container>
+          <!-- OTP END -->
+
+          <!-- Create Login BEGIN-->
+          <ng-container *ngSwitchCase="'enterLoginCred'">
+            <div class="form-group">
+              <label class="font-weight-bold col-sm-12">Name <span class="text-danger">*</span></label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" name="UserName" #UserName="ngModel" id="UserName"
+                  [(ngModel)]="Login.UserName" [ngClass]="{ 'is-invalid': !UserName.valid && UserName.touched }"
+                  placeholder="Choose your display name" required>
+                <div *ngIf="!UserName.valid && UserName.errors" class="invalid-feedback">
+                  <div *ngIf="UserName.errors.required">User Name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label *ngIf="!isUserIDMail;else showNumber" class="font-weight-bold col-sm-12">Email Id<span
+                  class="text-danger">*</span></label>
+              <ng-template #showNumber>
+                <label class="font-weight-bold col-sm-12">Mobile No<span class="text-danger">*</span></label>
+              </ng-template>
+              <div class="col-sm-12">
+                <input type="text" name="userid" #userid="ngModel" id="userid" [(ngModel)]="Login.UserPro"
+                  [ngClass]="{ 'is-invalid': !userid.valid && userid.touched }" class="form-control" placeholder=""
+                  required [pattern]="UserPattern">
+                <!-- <div class="small"><em>Mobile number must start with 6, 7, 8, 9</em></div> -->
+                <div *ngIf="!userid.valid && userid.touched" class="invalid-feedback">
+                  <div *ngIf="userid?.errors?.required">
+                    <label *ngIf="!isUserIDMail;else showNumber">Email Id is required<span
+                        class="text-danger">*</span></label>
+                    <ng-template #showNumber>
+                      <label>Mobile No is required<span class="text-danger">*</span></label>
+                    </ng-template>
+                  </div>
+                  <div *ngIf="userid?.errors?.pattern">
+                    <label *ngIf="!isUserIDMail;else showNumber">Email Id is invalid<span
+                        class="text-danger">*</span></label>
+                    <ng-template #showNumber>
+                      <label>Mobile No is invalid<span class="text-danger">*</span></label>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="font-weight-bold col-sm-12">Password <span class="text-danger">*</span></label>
+              <div class="col-sm-12">
+                <input type="password" name="loginPassword" #loginPassword="ngModel" id="loginPassword"
+                  class="form-control" placeholder="" pattern="^\S{6,}$" [(ngModel)]="Login.Password"
+                  [ngClass]="{ 'is-invalid': !loginPassword.valid && loginPassword.touched }" required>
+                <div *ngIf="!loginPassword.valid && loginPassword.touched" class="invalid-feedback">
+                  <div *ngIf="loginPassword.errors.required">Password is required</div>
+                  <div *ngIf="loginPassword.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group d-flex justify-content-center">
+              <button mat-raised-button (click)="LoginApp(Login.Password, 2)"
+                style="background-color: #17A8B8;color: #ffffff" [disabled]="loginForm.form.invalid">Submit</button>
+            </div>
+          </ng-container>
+          <!-- Create Login END-->
+
+
+          <!-- Enter Login BEGIN-->
+          <ng-container *ngSwitchCase="'enterOldCred'">
+            <div class="form-group" style="margin-top: 32px;">
+              <div class="col-sm-12">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Password</mat-label>
+                  <input type="password" name="password" #password="ngModel" id="password" [(ngModel)]="Login.Password"
+                    matInput placeholder="" required minlength="6">
+                  <mat-error *ngIf="password?.errors?.required">Password is required.</mat-error>
+                  <mat-error *ngIf="!password?.errors?.required && password?.errors?.minlength">Password must be at
+                    least 6 characters.
+                  </mat-error>
+                </mat-form-field>
+                <div class="row">
+                  <div class="col text-right" style="margin-right: 16px;"> <a class="resend-otp-bg pointer-cursor"
+                      (click)="LoginApp(null, 3)">Forgot
+                      Password?</a> </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button mat-raised-button (click)="LoginApp(Login.Password, 11)"
+                    style="margin-top:16px;width: 100%;background-color: #fb641b;cursor: pointer;color: #ffffff"
+                    [disabled]="loginForm.form.invalid">Login</button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <!-- Enter Login END-->
+
+          <!-- Forgot password BEGIN-->
+          <ng-container *ngSwitchCase="'enterForgotPassword'">
+            <div class="form-group">
+              <label class="font-weight-bold col-sm-12">Enter new password<span class="text-danger">*</span></label>
+              <div class="col-sm-12">
+                <input type="password" name="password" #password="ngModel" id="password" [(ngModel)]="Login.Password"
+                  [ngClass]="{ 'is-invalid': !password.valid && password.touched }" class="form-control" placeholder=""
+                  required minlength="6">
+                <div *ngIf="!password.valid && password.touched" class="invalid-feedback">
+                  <div *ngIf="password?.errors?.required">
+                    Password is required
+                  </div>
+                  <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row d-flex justify-content-center mr-2">
+              <button mat-raised-button (click)="LoginApp(Login.Password, 5)"
+                style="background-color: #17A8B8;color: #ffffff" [disabled]="loginForm.form.invalid">Submit</button>
+            </div>
+          </ng-container>
+          <!-- Forgot password END-->
+        </ng-container>
+
+        <mat-label style="margin: 20px 20px; position: absolute;">
+          <i style="font-size: 12px;">By proceeding further you have agreed to our terms
+            and conditions*</i>
+        </mat-label>
+      </form>
+    </div>
+  </div>
+</div>
+<div style="top:0; position:absolute; right: 0;">
+  <button mat-button (click)="onNoClick()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,12 @@
+<div class="container mt-5 pt-5" *ngIf="!isSubmited" >
+  <h4> Sent Request, Waiting For Approval...!! </h4>
+</div>
+
+<div class="container mt-5 pt-5" *ngIf="isSubmited" >
+  <h4 *ngIf="isVerified == 200">
+    Your Mobile Has Verified, <br>Please Login With Your Credentials
+  </h4>
+  <h4 *ngIf="isVerified == 201">
+    Your Mobile Has Verification Failed
+  </h4>
+</div>
