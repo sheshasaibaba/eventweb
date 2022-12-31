@@ -1,4 +1,5 @@
 /.DS_Store
 /.editorconfig
-/angular.json
+# /angular.json
 /node_modules
+/.angular
